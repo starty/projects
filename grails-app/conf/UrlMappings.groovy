@@ -12,9 +12,20 @@ class UrlMappings {
 		"/"(view:"/index")
 		"500"(view:'/error')
 
-        "/projects" (controller: "project") {
-                action =  [GET: "getProject"]
+        "/$projectId" (controller: "project") {
+                action =  [GET: "getProjectById"]
 
        }
+        "/" (controller: "project") {
+            action =  [POST: "createProject"]
+
+        }
+
+        "/category/$categoryId" (controller: "project") {
+            action =  [GET: "getProjectsByCategory"]
+
+        }
+
+
     }
 }
