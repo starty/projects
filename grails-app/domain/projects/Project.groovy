@@ -3,56 +3,51 @@ package projects
 class Project {
 
     Integer projectId
-   // String siteId
+    String siteId
     String title
     Integer categoryId
- //   Location location
-  //  String status
+    //Location location
+    String status
     //Set rewards = []
-  //  String videoUrl
-    //  String description
-    //String riskAndChallenges
+    String videoUrl
+    String description
+    String riskAndChallenges
 
-    //Integer userId
-    // Date startDate
-    //Date endDate
+    Integer userId
+    Date startDate
+    Date endDate
 
-    //Long goalAmount
-    //Long backedUserQty
-    //Long backedAmount
-    //Long secondsToGo
+    Long goalAmount
+    Long backedUserQty
+    Long backedAmount
+    Long timeToGo
 
-    //Date creationDate
-    //Date lastUpdated
-
+    Date creationDate
+    Date lastUpdated
 
     static constraints = {
-        projectId(unique: true, blank:false)
-        title(blank: false, maxSize: 100)
 
-        //   siteId  (nullable: true)
-
-         categoryId   (nullable: true)
-      //   location (nullable: true)
-        // status  (nullable : true)
+        projectId (unique:true, nullable:false)
+        title (blank:false, maxSize:100)
+        siteId (nullable:false, blank:false )
+        categoryId (nullable:false)         /* como le decis a grails que exista en la de categ.         */
+        //location (nullable: true)
+        status (nullable:true, blank:false)
          //rewards (nullable: true)
-        // videoUrl    (nullable: true)
-        // description   (nullable: true)
-        //riskAndChallenges    (nullable: true)
+        videoUrl (nullable:false, blank:false)
+        description (nullable:false, blank:false)
+        riskAndChallenges (nullable:false, blank:false)
+        userId (nullable:false)
 
-        //userId     (nullable: true)
-        //startDate   (nullable: true)
-        //endDate   (nullable: true)
+        startDate (nullable:false) /*TO DO REVISAR FECHAS*/
+        endDate (nullable:false)   /*TO DO REVISAR FECHAS*/
+        goalAmount (nullable:false)
+        backedUserQty (nullable:false)
+        backedAmount (nullable:false)
+        timeToGo (nullable:false)
 
-        //goalAmount  (nullable: true)
-        //backedUserQty   (nullable: true)
-        //backedAmount   (nullable: true)
-        //secondsToGo   (nullable: true)
-
-        //creationDate (nullable: true)
-        //lastUpdated   (nullable: true)
-
-
+        creationDate (nullable:false)
+        lastUpdated (nullable:false)
     }
 
     static mapping = {
