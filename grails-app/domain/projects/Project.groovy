@@ -17,17 +17,17 @@ class Project {
     Date startDate
     Date endDate
 
-    Long goalAmount
-    Long backedUserQty
-    Long backedAmount
-    Long timeToGo
+    Double goalAmount
+    Double backedUserQty
+    Double backedAmount
+    Double timeToGo
 
     Date creationDate
     Date lastUpdated
 
     static constraints = {
 
-        projectId (unique:true, nullable:false)
+        projectId (unique:true, blank:false)
         title (blank:false, maxSize:100)
         siteId (nullable:false, blank:false )
         categoryId (nullable:false)         /* como le decis a grails que exista en la de categ.         */

@@ -3,6 +3,7 @@ dataSource {
     driverClassName = "org.h2.Driver"
     username = "sa"
     password = ""
+    logSql = "true"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -26,6 +27,7 @@ environments {
             //url = "jdbc:mysql://localhost/test_modelo_moderations"
             url = "jdbc:mysql://localhost/starty-project"
             cache.provider_class='com.opensymphony.oscache.hibernate.OSCacheProvider'
+
         }
     }
     test {

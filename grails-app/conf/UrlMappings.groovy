@@ -1,8 +1,6 @@
-import com.sun.org.apache.bcel.internal.generic.GETFIELD
-
 class UrlMappings {
 
-	static mappings = {
+	static mappings = {        /*
 		"/$controller/$action?/$id?"{
 			constraints {
 				// apply constraints here
@@ -10,14 +8,15 @@ class UrlMappings {
 		}
 
 		"/"(view:"/index")
-		"500"(view:'/error')
+		"500"(view:'/error')     */
 
         "/$projectId" (controller: "project") {
-                action =  [GET: "getProjectById"]
+           action =  [GET: "getProjectByProjectId"]
 
        }
+
         "/" (controller: "project") {
-            action =  [POST: "createProject"]
+           action =  [POST: "postProject"]
 
         }
 
