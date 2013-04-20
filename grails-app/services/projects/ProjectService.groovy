@@ -1,6 +1,10 @@
 package projects
 
+//import InvalidCategoryException
+
 class ProjectService {
+
+    def categoryService
 
     def getProjectByProjectId ( Integer projectId) {
 
@@ -20,8 +24,11 @@ class ProjectService {
         project.setVideoUrl(projectJson.videoUrl)
         project.setDescription(projectJson.description)
         project.setRiskAndChallenges(projectJson.riskAndChallenges)
-       // categoryService.validateCategory(bodyCategory)
-       // project.setCategoryId (categoryService.)
+        if (this.validateCategory(projectJson.categoryId).equals( true )  )
+           project.setCategoryId(projectJson.categoryId)
+        else
+        throw new Exception("No se ha encontrado la categoria buscada") as Throwable
+
         project.setUserId(projectJson.userId)
         project.setStartDate(Date.parse("ddMMyyyy", projectJson.startDate))
         project.setEndDate(Date.parse("ddMMyyyy",projectJson.endDate))
@@ -37,6 +44,10 @@ class ProjectService {
         project.save(flush:true)
         return project
 
+    }
+
+    def validateCategory (Integer categoryId){
+        categoryService.getCategory (categoryId)
     }
 
     def getProjectsByCategoryId(Integer categoryId) {

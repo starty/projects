@@ -6,7 +6,7 @@ class ProjectController {
 
     def projectService
 
-    def getProjectbyProjectId() {
+    def getProjectByProjectId() {
 
         response.status=200
         render projectService.getProjectByProjectId(params.projectId as Integer) as JSON
