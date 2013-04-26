@@ -15,4 +15,6 @@ class Location {
     String  country
     String  siteId
 
+    static belongsTo = [Project]
+
 }

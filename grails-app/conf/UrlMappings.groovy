@@ -21,6 +21,9 @@ class UrlMappings {
 
         }
 
+        "/users/$userID" (controller: "project") {
+            action =  [GET: "getProjectsByUser"]
 
+        }
     }
 }

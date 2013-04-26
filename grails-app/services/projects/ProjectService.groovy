@@ -24,6 +24,7 @@ class ProjectService {
         project.setVideoUrl(projectJson.videoUrl)
         project.setDescription(projectJson.description)
         project.setRiskAndChallenges(projectJson.riskAndChallenges)
+
         if (this.validateCategory(projectJson.categoryId).equals( true )  )
            project.setCategoryId(projectJson.categoryId)
         else
@@ -34,12 +35,12 @@ class ProjectService {
         project.setEndDate(Date.parse("ddMMyyyy",projectJson.endDate))
 
         project.setGoalAmount(projectJson.goalAmount)
-        project.setBackedUserQty(projectJson.backedUserQty)
-        project.setBackedAmount(projectJson.backedAmount)
-        project.setTimeToGo(projectJson.timeToGo)
+        project.setBackedUserQty(0)
+        project.setBackedAmount(0)
+        project.setTimeToGo(1) /* TODO HACER DIFERENCIAS DE FECHAS*/
 
-        project.setCreationDate(Date.parse("ddMMyyyy",projectJson.creationDate))
-        project.setLastUpdated (Date.parse("ddMMyyyy",projectJson.lastUpdated ))
+        project.setCreationDate(new Date () )
+        project.setLastUpdated (new Date () )
 
         project.save(flush:true)
         return project
@@ -47,11 +48,22 @@ class ProjectService {
     }
 
     def validateCategory (Integer categoryId){
-        categoryService.getCategory (categoryId)
+
+        categoryService.getCategoryById (categoryId)
     }
 
     def getProjectsByCategoryId(Integer categoryId) {
+        if (!categoryService.getCategoryById (categoryId)) {
+            System.out.println ("Finded")
+            return Project.findAllByCategoryId(categoryId)
+        }
+        else
+            System.out.println ("Not Finded")
+    }
 
-        return Project.findAllByCategoryId(categoryId)
+    def getProjectsByUserId(Integer userId) {
+
+        return Project.findAllByUserId(userId)
+
     }
 }

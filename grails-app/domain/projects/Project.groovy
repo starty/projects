@@ -6,9 +6,9 @@ class Project {
     String siteId
     String title
     Integer categoryId
-    //Location location
+    Integer locationId
     String status
-    //Set rewards = []
+    Set rewards = []
     String videoUrl
     String description
     String riskAndChallenges
@@ -25,29 +25,34 @@ class Project {
     Date creationDate
     Date lastUpdated
 
+    static hasMany = [rewards:Reward]
+
     static constraints = {
+
+        // Nullable viene en false por default, quiere decir que no puede ser null
+        // blank: significa que no puede ser blanco o espacios
+        // size:
 
         projectId (unique:true, blank:false)
         title (blank:false, maxSize:100)
-        siteId (nullable:false, blank:false )
-        categoryId (nullable:false)         /* como le decis a grails que exista en la de categ.         */
-        //location (nullable: true)
-        status (nullable:true, blank:false)
-         //rewards (nullable: true)
-        videoUrl (nullable:false, blank:false)
-        description (nullable:false, blank:false)
-        riskAndChallenges (nullable:false, blank:false)
-        userId (nullable:false)
+        siteId (blank:false )
+        categoryId (blank:false)         /* como le decis a grails que exista en la de categ.         */
+        locationId (blank:false)
+        status (blank:false)
+        videoUrl (blank:false)
+        description (blank:false)
+        riskAndChallenges (blank:false)
+        userId (blank:false)
 
-        startDate (nullable:false) /*TO DO REVISAR FECHAS*/
-        endDate (nullable:false)   /*TO DO REVISAR FECHAS*/
-        goalAmount (nullable:false)
-        backedUserQty (nullable:false)
-        backedAmount (nullable:false)
-        timeToGo (nullable:false)
+        startDate (blank:false) /*TO DO REVISAR FECHAS*/
+        endDate (blank:false)   /*TO DO REVISAR FECHAS*/
+        goalAmount (blank:false)
+        backedUserQty (blank:false)
+        backedAmount (blank:false)
+        timeToGo (blank:false)
 
-        creationDate (nullable:false)
-        lastUpdated (nullable:false)
+        creationDate (blank:false)
+        lastUpdated (blank:false)
     }
 
     static mapping = {
@@ -55,7 +60,5 @@ class Project {
         version false
         id name: 'projectId'
     }
-
-
 
 }
