@@ -62,7 +62,7 @@ grails.hibernate.cache.queries = false
 environments {
     development {
         grails.logging.jul.usebridge = true
-        grails.serverUrl = "http://localhost:8090/${appName}"
+        grails.serverUrl = "http://localhost:8090/mockserver"
         grails.categoryPathUrl = "category"
     }
     production {

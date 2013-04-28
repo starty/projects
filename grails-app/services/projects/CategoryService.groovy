@@ -1,6 +1,8 @@
 package projects
 
 import grails.converters.JSON
+import groovyx.net.http.HTTPBuilder
+import static groovyx.net.http.Method.GET
 
 class CategoryService {
 
@@ -10,20 +12,23 @@ class CategoryService {
 
        def categoryPath = grailsApplication.config.grails.categoryPathUrl
         // url que apunta a la api
-        def url = "/$categoryPath/$categoryId"
-        def restClient = grailsApplication.mainContext.getBean("restClient")
-        def returnValue = [responseStatus: null, responseData: null]
-        restClient.get ( uri : url.toString(),
-                success: {
-                    returnValue.responseData = it.data
-                    returnValue.responseStatus = it.status?.statusCode as Long
-                    //println "${returnValue.responseStatus}"
-                },
-                failure: {
-                    returnValue.responseStatus = it.status?.statusCode
-                    println "get failed, status ${it.status?.statusCode}, response ${it.data}"
-                }
-        )
-        return returnValue
+        //def baseUrl = grailsApplication.config.grails.serverUrl
+        //def url =   "/$categoryPath/$categoryId"
+
+
+        //def restBuilder = new RestBuilder()
+        def http = new HTTPBuilder("http://localhost:8090/mockserver")
+
+        http.request( GET, groovyx.net.http.ContentType.JSON ) { req ->
+            uri.path ="http://localhost:8090/mockserver"+  "/"+categoryPath+"/"+categoryId
+            headers.'User-Agent' = 'Mozilla/5.0 Ubuntu/8.10 Firefox/3.0.4'
+           response.success = { resp, json ->
+                println resp.statusLine
+                return json.responseData
+            }
+            response.failure = { resp ->
+                println "Unexpected error: ${resp.statusLine.statusCode} : ${resp.statusLine.reasonPhrase}"
+            }
+        }
     }
 }

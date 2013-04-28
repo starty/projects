@@ -5,7 +5,7 @@ import net.sf.json.JSON
 
 class CategoryMockService {
 
-        def getCategory (Integer categoryId){
+        def getCategoryById (Integer categoryId){
 
             String key = categoryId
 
