@@ -53,12 +53,12 @@ class ProjectService {
     }
 
     def getProjectsByCategoryId(Integer categoryId) {
-        if (!categoryService.getCategoryById (categoryId)) {
-            System.out.println ("Finded")
+   //     def category = categoryService.getCategoryById (categoryId)
+        if (categoryService.getCategoryById (categoryId))
             return Project.findAllByCategoryId(categoryId)
-        }
+
         else
-            System.out.println ("Not Finded")
+            return null /* TO DO REVISAR        */
     }
 
     def getProjectsByUserId(Integer userId) {

@@ -11,24 +11,20 @@ class CategoryService {
     def getCategoryById (Integer categoryId){
 
        def categoryPath = grailsApplication.config.grails.categoryPathUrl
-        // url que apunta a la api
-        //def baseUrl = grailsApplication.config.grails.serverUrl
-        //def url =   "/$categoryPath/$categoryId"
 
-
-        //def restBuilder = new RestBuilder()
-        def http = new HTTPBuilder("http://localhost:8090/mockserver")
+        def http = new HTTPBuilder(grailsApplication.config.grails.apiUrl)
 
         http.request( GET, groovyx.net.http.ContentType.JSON ) { req ->
-            uri.path ="http://localhost:8090/mockserver"+  "/"+categoryPath+"/"+categoryId
-            headers.'User-Agent' = 'Mozilla/5.0 Ubuntu/8.10 Firefox/3.0.4'
+
+            uri.path =  grailsApplication.config.grails.apiUrl+"/"+categoryPath+"/"+categoryId
+
            response.success = { resp, json ->
                 println resp.statusLine
-                return json.responseData
+                return json
             }
             response.failure = { resp ->
                 println "Unexpected error: ${resp.statusLine.statusCode} : ${resp.statusLine.reasonPhrase}"
             }
-        }
+       }
     }
 }
