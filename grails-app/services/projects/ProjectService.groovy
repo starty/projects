@@ -31,6 +31,7 @@ class ProjectService {
         throw new Exception("No se ha encontrado la categoria buscada") as Throwable
 
         project.setUserId(projectJson.userId)
+        project.setLocationId(projectJson.locationId)
         project.setStartDate(Date.parse("ddMMyyyy", projectJson.startDate))
         project.setEndDate(Date.parse("ddMMyyyy",projectJson.endDate))
 
@@ -49,7 +50,10 @@ class ProjectService {
 
     def validateCategory (Integer categoryId){
 
-        categoryService.getCategoryById (categoryId)
+       if  (categoryService.getCategoryById (categoryId)     )
+           return true
+       else
+           return false
     }
 
     def getProjectsByCategoryId(Integer categoryId) {

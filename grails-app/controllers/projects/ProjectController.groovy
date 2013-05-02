@@ -8,7 +8,7 @@ class ProjectController {
     def helperService
 
     def postProject ()   {
-
+        def data = request.JSON
         def missingParameters = helperService.validateMandatoryFields(data)
 
         if (missingParameters) {

@@ -25,7 +25,7 @@ class Project {
     Date creationDate
     Date lastUpdated
 
-    static hasMany = [rewards:Reward]
+    //static hasMany = [rewards:Reward]
 
     static constraints = {
 
@@ -33,10 +33,10 @@ class Project {
         // blank: significa que no puede ser blanco o espacios
         // size:
 
-        projectId (unique:true, blank:false)
+        projectId (blank:false)
         title (blank:false, maxSize:100)
         siteId (blank:false )
-        categoryId (blank:false)         /* como le decis a grails que exista en la de categ.         */
+        categoryId (blank:false)
         locationId (blank:false)
         status (blank:false)
         videoUrl (blank:false)

@@ -51,15 +51,15 @@ class HelperService {
             missingParameters.add("riskAndChallenges")
         }
 
-        if(!data.last_name) {
+        if(!data.startDate) {
             missingParameters.add("startDate")
         }
 
-        if(!data.last_name) {
+        if(!data.endDate) {
             missingParameters.add("endDate")
         }
 
-        if(!data.last_name) {
+        if(!data.goalAmount) {
             missingParameters.add("goalAmount")
         }
 
