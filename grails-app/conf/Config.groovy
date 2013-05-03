@@ -68,6 +68,7 @@ environments {
     production {
         grails.logging.jul.usebridge = false
         grails.apiUrl = "http://calm-reaches-2410.herokuapp.com"
+        grails.categoryPathUrl = "category"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
