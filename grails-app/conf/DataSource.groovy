@@ -39,7 +39,15 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+
+                uri = new URI(System.env.CLEARDB_DATABASE_URL?: "mysql://bb1f66755cc5d5:813d89b1@us-cdbr-east-03.cleardb.com/heroku_26f2c1e58f2831d")
+                    //"mysql://99784530f103:934c2a0@server.cleardb.com/heroku_0ac7f6f45fa34")
+                url = "jdbc:mysql://"+uri.host+uri.path
+                username = uri.userInfo.split(":")[0]
+                password = uri.userInfo.split(":")[1]
+
+
+           /* url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
             pooled = true
             properties {
                maxActive = -1
@@ -49,8 +57,9 @@ environments {
                testOnBorrow=true
                testWhileIdle=true
                testOnReturn=true
-               validationQuery="SELECT 1"
+               validationQuery="SELECT 1"*/
+
             }
         }
     }
-}
+
