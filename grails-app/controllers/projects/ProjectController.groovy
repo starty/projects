@@ -78,7 +78,7 @@ class ProjectController {
 
     }
 
-    def getProjectByUser () {
+    def getProjectsByUser () {
 
         if(!params.userId) {
             response.status = 403 // Forbidden
@@ -99,6 +99,58 @@ class ProjectController {
             return
         }
 
+    }
+
+    def getBackersForProject () {
+
+        if(!params.projectId) {
+            response.status = 403 // Forbidden
+            render helperService.renderError("Parameter 'projectId' is mandatory.", "403")
+            return
+        }
+
+        def project = projectService.getBackersForProject(params.projectId as Integer)
+
+        if (project) {
+            response.status = 200  // Ok
+            render project as JSON
+            return
+        }
+        else{
+            response.status = 404 // NotFound
+            render helperService.renderError("Project with id "+params.projectId+" not found.", "404")
+            return
+        }
+
+    }
+
+
+    def getProjectsByIds() {
+        if(!params.ids) {
+            response.status = 403 // Forbidden
+            render helperService.renderError("Parameter 'ids' is mandatory.", "403")
+            return
+        }
+
+        String[] ids = params.ids.split(",")
+
+        if (!(ids.size() >= 1)) {
+            response.status = 403 // Forbidden
+            render helperService.renderError("A minimum amount of one id is mandatory.", "403")
+            return
+        }
+
+        def projectMap = [:]
+
+        ids.each { id ->
+            Project project = projectService.getProjectByProjectId(id as Integer)
+            if (project)
+                project.put(project.getProjectId(), project)
+        }
+
+        response.status = 200 // OK
+        render usersMap as JSON
+        return
     }
 
 

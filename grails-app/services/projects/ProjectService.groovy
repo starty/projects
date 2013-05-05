@@ -70,4 +70,9 @@ class ProjectService {
         return Project.findAllByUserId(userId)
 
     }
+
+    def getBackersForProject(Integer projectId) {
+
+
+    }
 }

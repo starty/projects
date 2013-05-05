@@ -18,14 +18,14 @@ class Project {
     Date endDate
 
     Double goalAmount
-    Double backedUserQty
+    Set backers = []
     Double backedAmount
     Double timeToGo
 
     Date creationDate
     Date lastUpdated
 
-    //static hasMany = [rewards:Reward]
+    static hasMany = [rewards:Reward , backers:Users]
 
     static constraints = {
 
@@ -47,7 +47,7 @@ class Project {
         startDate (blank:false) /*TO DO REVISAR FECHAS*/
         endDate (blank:false)   /*TO DO REVISAR FECHAS*/
         goalAmount (blank:false)
-        backedUserQty (blank:false)
+    //    backedUserQty (blank:false)
         backedAmount (blank:false)
         timeToGo (blank:false)
 
