@@ -12,7 +12,7 @@ class UrlMappings {
        }
 
         "/" (controller: "project") {
-           action =  [POST: "postProject"]
+           action =  [GET: "getAllProjects", POST: "postProject"]
 
         }
 

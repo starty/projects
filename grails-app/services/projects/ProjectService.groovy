@@ -6,7 +6,11 @@ class ProjectService {
 
     def categoryService
 
-    def getProjectByProjectId ( Integer projectId) {
+    def getAllProjectByProjectId (){
+        return Project.getAll()
+    }
+
+    def getProjectByProjectId (Integer projectId) {
 
         return Project.findByProjectId(projectId)
     }

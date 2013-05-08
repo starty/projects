@@ -7,7 +7,7 @@ class Project {
     String title
     Integer categoryId
     Integer locationId
-    String status
+    String status = "Pending"
     Set rewards = []
     String videoUrl
     String description
@@ -25,7 +25,7 @@ class Project {
     Date creationDate
     Date lastUpdated
 
-    static hasMany = [rewards:Reward , backers:Users]
+    static hasMany = [rewards:Reward] //, backers:Users]
 
     static constraints = {
 

@@ -32,6 +32,14 @@ class ProjectController {
 
     }
 
+    def getAllProjects(){    //Eventualmente lo podemos hacer por site
+
+        def projectMap = projectService.getAllProjectByProjectId( )
+        response.status = 200 // OK
+        render projectMap as JSON
+        return
+    }
+
     def getProjectByProjectId() {
 
         if(!params.projectId) {
